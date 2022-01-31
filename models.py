@@ -1,4 +1,4 @@
-import hashlib
+
 from marshmallow import Schema, fields
 from setup_db import db
 
@@ -59,9 +59,7 @@ class User(db.Model):
 class UserSchema(Schema):
     id = fields.Int()
     username = fields.Str()
-    password = fields.Str()
+    password = fields.Str(load_only=True)
     role = fields.Str()
 
 
-def get_hash(self):
-    return hashlib.md5(self.password.encode('utf-8')).hexdigest()

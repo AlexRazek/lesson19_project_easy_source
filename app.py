@@ -3,6 +3,7 @@ from flask_restx import Api
 
 from config import Config
 from setup_db import db
+from Security.auth import auth_ns
 from views.directors import director_ns
 from views.genres import genre_ns
 from views.movies import movie_ns
@@ -25,6 +26,7 @@ def register_extensions(app):
     api.add_namespace(genre_ns)
     api.add_namespace(movie_ns)
     api.add_namespace(user_ns)
+    api.add_namespace(auth_ns)
     create_data(app, db)
 
 

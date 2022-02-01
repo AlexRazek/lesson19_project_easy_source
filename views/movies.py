@@ -1,8 +1,8 @@
 from flask import request
 from flask_restx import Resource, Namespace
 
-from Security.restrict_edit import admin_required_edit
-from Security.restrict_write import check_token
+from security.restrict_edit import admin_required_edit
+from security.restrict_write import check_token
 from models import Movie, MovieSchema
 from setup_db import db
 

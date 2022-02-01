@@ -25,26 +25,11 @@ class UserView(Resource):
 
 
 @user_ns.route('/<int:bid>')
-class MovieView(Resource):
+class UserView(Resource):
     def get(self, bid):
         b = db.session.query(User).get(bid)
         sm_d = UserSchema().dump(b)
         return sm_d, 200
-
-    def get_by_username(self, username: str):
-        return db.session.query(User).filter(User.username == username).one_or_none()
-
-    def update_role(self, user_name: str, role : str):
-        user = db.session.get_by_username(user_name)
-        user.role = role
-        db.session.add(user)
-        db.session.commit()
-
-    def update_password(self, user_name: str, password : str):
-        user = db.session.get_by_username(user_name)
-        user.password = password
-        db.session.add(user)
-        db.session.commit()
 
     def put(self, bid):
         user = db.session.query(User).get(bid)
@@ -62,3 +47,22 @@ class MovieView(Resource):
         db.session.delete(user)
         db.session.commit()
         return "", 204
+
+
+
+
+
+    # def get_by_username(self, username: str):
+    #     return db.session.query(User).filter(User.username == username).one_or_none()
+
+    # def update_role(self, user_name: str, role : str):
+    #     user = db.session.get_by_username(user_name)
+    #     user.role = role
+    #     db.session.add(user)
+    #     db.session.commit()
+    #
+    # def update_password(self, user_name: str, password : str):
+    #     user = db.session.get_by_username(user_name)
+    #     user.password = password
+    #     db.session.add(user)
+    #     db.session.commit()

@@ -15,8 +15,8 @@ class UserView(Resource):
         return res, 200
 
     def post(self):
-        req_json = request.json
-        new_user = User(**req_json)
+        # req_json = request.json
+        # new_user = User(**req_json)
 
         db.session.add(new_user)
         db.session.commit()

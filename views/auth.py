@@ -25,6 +25,7 @@ class AuthView(Resource):
 
         user = db.session.query(User).filter(User.username == username).first()
 
+
         if user is None:
             return {"error": "Неверные учётные данные"}, 401
 

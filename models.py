@@ -1,3 +1,5 @@
+import base64
+import hashlib
 
 from marshmallow import Schema, fields
 from setup_db import db
@@ -55,11 +57,18 @@ class User(db.Model):
     password = db.Column(db.String)
     role = db.Column(db.String)
 
-
 class UserSchema(Schema):
     id = fields.Int()
     username = fields.Str()
     password = fields.Str(load_only=True)
     role = fields.Str()
+
+
+def get_password(password):
+    return hashlib.md5(password.encode('utf-8')).hexdigest()
+
+def get_password_hash(password):
+    return base64.b64encode(get_password(password)).decode('utf-8')
+
 
 

@@ -76,5 +76,3 @@ class AuthView(Resource):
 
         return tokens, 201
 
-    def get_hash(password):
-        return hashlib.md5(password.encode('utf-8')).hexdigest()
